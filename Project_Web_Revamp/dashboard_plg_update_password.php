@@ -5,7 +5,6 @@
         <h1 class="text-center"> Ubah Password </h1>
         <div class="row justify-content-center my-4">    
             <form action="assets/includes/func_update_pass.php" method="post" id="formResetPassword" class="col-lg-4">
-                <input type="hidden" name="tokenUser" value="<?php echo $_GET['token'];?>">
                 <div class="form-group">
                     <label for="resetPassword"> Masukkan Password Baru : </label>
                     <input type="password" name="resetPassword" id="resetPassword" class="form-control" placeholder="Masukkan Password Baru ...">
