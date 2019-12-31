@@ -104,7 +104,7 @@
         }else
         {
             //Menginsert kedalam database
-            $sql_insert = "insert into user values('','".$namaUser."','".$alamatUser."','".$notelpUser."',
+            $sql_insert = "insert into user values('','".$namaUser."','','".$alamatUser."','".$notelpUser."',
             '".$emailUser."','".$passwordEncrypt."','".$fileNameNew."','".$tokenUser."',2,'".date("Y-m-d")."',0)";
             
             //Mengosongkan session jika user berhasil mendaftar

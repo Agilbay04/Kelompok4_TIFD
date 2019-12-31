@@ -3,7 +3,7 @@
     $host = "localhost";
     $username = "root";
     $password = "";
-    $database = "db_rizquina";
+    $database = "new1";
     $conn = mysqli_connect($host, $username, $password, $database);
 
     //Check connection
