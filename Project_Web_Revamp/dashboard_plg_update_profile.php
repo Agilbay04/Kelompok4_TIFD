@@ -38,6 +38,28 @@
                         <div class="invalid-feedback" id="invalidUpdateNama"></div>
                     </div>
                     <div class="form-group">
+                        <label for="genderUserProfile" class="font-weight-bold"> Jenis Kelamin </label>
+                        <select name="genderUserProfile" id="genderUserProfile" class="form-control">
+                            <?php
+                            
+                                if(strtolower($fetch['JENIS_KELAMIN']) == "laki-laki")
+                                {
+                                    ?>
+                                        <option value="Laki-Laki" selected> Laki - Laki </option>
+                                        <option value="Perempuan"> Perempuan </option>
+                                    <?php
+                                }else if(strtolower($fetch['JENIS_KELAMIN']) == "perempuan")
+                                {
+                                    ?>
+                                        <option value="Laki-Laki"> Laki - Laki </option>
+                                        <option value="Perempuan" selected> Perempuan </option>
+                                    <?php
+                                }
+                            
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="alamatUserProfile" class="font-weight-bold"> Alamat User </label>
                         <textarea name="alamatUserProfile" id="alamatUserProfile" class="form-control" ><?php echo $fetch['ALAMAT_USER'];?></textarea>
                         <div class="valid-feedback" id="validUpdateAlamat">Bagus!</div>
