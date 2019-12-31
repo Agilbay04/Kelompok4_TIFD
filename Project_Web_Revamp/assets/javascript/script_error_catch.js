@@ -3,8 +3,6 @@ var link = window.location.href.split("?").pop().split("&").pop().split("=");
 checkError(link);
 checkSuccess(link);
 
-alert(link);
-
 //Success Message
 function checkSuccess(value)
 {
