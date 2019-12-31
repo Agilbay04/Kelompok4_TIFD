@@ -1,6 +1,33 @@
 var link = window.location.href.split("?").pop().split("=");
 
 checkError(link);
+<<<<<<< HEAD
+=======
+checkSuccess(link);
+
+alert(link);
+
+//Success Message
+function checkSuccess(value)
+{
+
+    //Register
+    if(value.includes("successregister","true"))
+    {
+        $('#modalWarning').modal('show');
+        document.getElementById('modalWarningMessage').innerText = "Registrasi anda berhasil, harap periksa email anda.";
+    }
+
+    //Payment
+    if(value.includes("successupload","true"))
+    {
+        $('#modalWarning').modal('show');
+        document.getElementById('modalWarningMessage').innerText = "Anda berhasil mengunggah bukti pembayaran. Harap tunggu verifikasi dari administrator dalam waktu 2 x 24 jam. Pesanan anda akan segera di proses.";
+    }
+
+}
+
+>>>>>>> parent of c58c37a... Menghapus alert
 
 function checkError(value)
 {
