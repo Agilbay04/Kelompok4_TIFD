@@ -37,8 +37,14 @@
                     </div>
                     <div class="form-group">
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <label for="jkUserProfile" class="font-weight-bold"> Jenis Kelamin  </label>
                         <input type="text" name="jkUserProfile" id="jkUserProfile" class="form-control" value="<?php echo $fetch['JENIS_KELAMIN'];?>" placeholder="Choose your gender ...." disabled>                    </div>
+=======
+                        <label for="genderUserProfile" class="font-weight-bold"> Jenis Kelamin : </label>
+                        <input type="text" name="genderUserProfile" id="genderUserProfile" class="form-control" value="<?php echo $fetch['JENIS_KELAMIN'];?>" disabled>
+                    </div>
+>>>>>>> parent of a049133... web user
                     <div class="form-group">
 =======
 >>>>>>> parent of b4d1fe0... Mengimplementasikan gender kedalam update profile

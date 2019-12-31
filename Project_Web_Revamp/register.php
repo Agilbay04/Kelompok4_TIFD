@@ -17,12 +17,6 @@
                                 <div class="invalid-feedback" id="invalidName"></div>
                             </div>
                             <div class="form-group my-4">
-                                <label for="jkUser"> Jenis Kelamin : </label>
-                                <select name="jkUser" ><option selected disabled>Pilih Jenis Kelamin</option><option value="Laki-Laki">Laki-Laki</option><option value="Perempuan">Perempuan</option></select>
-                                <div class="valid-feedback" id="validName"> Bagus! </div>
-                                <div class="invalid-feedback" id="invalidName">Harap Pilih Jenis Kelamin</div>
-                            </div>
-                            <div class="form-group my-4">
                                 <label for="alamatUser"> Alamat : </label>
                                 <textarea name="alamatUser" id="alamatUser" class="form-control w-100" placeholder="Enter your address ...."><?php if(isset($_SESSION['alamatUserRegister'])){echo $_SESSION['alamatUserRegister'];}?></textarea>
                                 <div class="valid-feedback" id="validAddress"> Bagus! </div>
@@ -61,6 +55,16 @@
                                     Password harus lebih panjang dari 8 karakter dan tidak boleh melebihi 20 karakter.
                                 </small>
                             </div>
+                            <div class="form-group my-4">
+                                <label for="selectGender"> Jenis Kelamin anda : </label>
+                                <select class="form-control" name="selectGender" id="selectGender">
+                                    <option value=""> Pilih berikut </option>
+                                    <option value="Laki-Laki"> Laki - Laki </option>
+                                    <option value="Perempuan"> Perempuan </option>
+                                </select>
+                                <div class="valid-feedback" id="validSelectGender"> Bagus! </div>
+                                <div class="invalid-feedback" id="invalidSelectGender"></div>
+                            </div>
                             <div class="from-group my-4">
                                 <label for="fotoProfilUser"> Foto Profil : </label>
                                 <input type="file" name="fotoProfilUser" id="fotoProfilUser" class="form-control-file">
@@ -84,7 +88,7 @@
                     </div>
                     <button type="submit" class="btn btn-block btn-outline-primary" name="registerUser"> Register </button>
                 </form>
-                <a href="#modalLogin" class="my-2 d-inline-block text-decoration-none" data-toggle="modal"> Sudah memiliki akun ? Klik disini. </a>
+                <a href="" class="my-2 d-inline-block text-decoration-none"> Sudah memiliki akun ? Klik disini. </a>
             </div>
         </div>
     </div>
