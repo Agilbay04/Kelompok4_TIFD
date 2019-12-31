@@ -26,7 +26,7 @@
     <div class="container">
         <div class="row my-2">
             <div class="col-lg-4 col-md-12 col-sm-12 d-flex justify-content-center">
-                <img src="assets/images/user_images/<?php echo $fetch['FOTO_PROFIL_USER'];?>" alt="" class="rounded image-fluid image-object-fit">
+                <img src="assets/images/user_images/<?php echo $fetch['FOTO_PROFIL_USER'];?>" alt="" class="rounded w-100 image-object-fit">
             </div>
             <div class="col-lg-8">
                 <h3 class="my-2"> Profile User </h3>
