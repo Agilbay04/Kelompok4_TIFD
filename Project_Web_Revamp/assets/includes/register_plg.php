@@ -107,10 +107,14 @@
         {
             //Menginsert kedalam database
 <<<<<<< HEAD
+<<<<<<< HEAD
             $sql_insert = "insert into user values('','".$namaUser."','".$jkUser."','".$alamatUser."','".$notelpUser."',
 =======
             $sql_insert = "insert into user values('','".$namaUser."','".$alamatUser."','".$notelpUser."',
 >>>>>>> parent of 74200a1... Melakukan perubahan
+=======
+            $sql_insert = "insert into user values('','".$namaUser."','','".$alamatUser."','".$notelpUser."',
+>>>>>>> parent of ae14f55... Menambahkan opsi untuk jenis kelamin pada register.php
             '".$emailUser."','".$passwordEncrypt."','".$fileNameNew."','".$tokenUser."',2,'".date("Y-m-d")."',0)";
             
             //Mengosongkan session jika user berhasil mendaftar
