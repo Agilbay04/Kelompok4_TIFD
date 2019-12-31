@@ -22,6 +22,7 @@
         $emailUser = htmlspecialchars(strtolower(stripcslashes($_POST['emailUser'])));
         $passwordUser = htmlspecialchars(strtolower(stripcslashes($_POST['passwordUser'])));
         $fileUser = $_FILES['fotoProfilUser'];
+        $genderUser = htmlspecialchars(stripcslashes($_POST['selectGender']));
         $tokenUser = uniqid();
         $url_aktivasi_akun = "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/aktivasi_acc.php?token=".$tokenUser;
 
@@ -104,7 +105,7 @@
         }else
         {
             //Menginsert kedalam database
-            $sql_insert = "insert into user values('','".$namaUser."','','".$alamatUser."','".$notelpUser."',
+            $sql_insert = "insert into user values('','".$namaUser."','".$genderUser."','".$alamatUser."','".$notelpUser."',
             '".$emailUser."','".$passwordEncrypt."','".$fileNameNew."','".$tokenUser."',2,'".date("Y-m-d")."',0)";
             
             //Mengosongkan session jika user berhasil mendaftar

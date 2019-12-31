@@ -55,6 +55,16 @@
                                     Password harus lebih panjang dari 8 karakter dan tidak boleh melebihi 20 karakter.
                                 </small>
                             </div>
+                            <div class="form-group my-4">
+                                <label for="selectGender"> Jenis Kelamin anda : </label>
+                                <select class="form-control" name="selectGender" id="selectGender">
+                                    <option value=""> Pilih berikut </option>
+                                    <option value="Laki-Laki"> Laki - Laki </option>
+                                    <option value="Perempuan"> Perempuan </option>
+                                </select>
+                                <div class="valid-feedback" id="validSelectGender"> Bagus! </div>
+                                <div class="invalid-feedback" id="invalidSelectGender"></div>
+                            </div>
                             <div class="from-group my-4">
                                 <label for="fotoProfilUser"> Foto Profil : </label>
                                 <input type="file" name="fotoProfilUser" id="fotoProfilUser" class="form-control-file">
