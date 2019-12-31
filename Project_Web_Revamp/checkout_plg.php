@@ -48,7 +48,7 @@ function rupiah($value)
                                     <td><?php echo $i+1;?></td>
                                     <td><?php echo $row['NAMA_LAPTOP'];?></td>
                                     <td><?php echo rupiah($row['HARGA_JUAL']);?></td>
-                                    <td> 1 </td>
+                                    <td> Kosong Dulu </td>
                                     <td><?php echo rupiah($total_belanja); ?></td>
                                 </tr>
                             <?php

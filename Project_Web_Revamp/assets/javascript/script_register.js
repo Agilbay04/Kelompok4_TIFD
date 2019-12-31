@@ -26,6 +26,7 @@ function registerActive()
 
 var formRegister = document.querySelector("#formRegister");
 var namaUser = formRegister.namaUser;
+var jkUser = formRegister.jkUser;
 var alamatUser = formRegister.alamatUser;
 var notelpUser = formRegister.notelpUser;
 var emailUser = formRegister.emailUser;
@@ -33,7 +34,6 @@ var passwordUser = formRegister.passwordUser;
 var confPassword = formRegister.confPasswordUser;
 var fotoProfilUser = formRegister.fotoProfilUser;
 var termsAgreement = formRegister.agreeTermsRegister;
-var genderUser = formRegister.selectGender;
 
 /* Parameter Validator */
 
@@ -90,6 +90,21 @@ namaUser.onblur = function()
     {
         namaUser.classList.remove('is-invalid');
         namaUser.classList.add('is-valid');
+    }
+};
+
+/* Jenis Kelamin User */
+jkUser.onblur = function()
+{
+    if(isEmpty(jkUser.value))
+    {
+        jkUser.classList.remove('is-valid');
+        jkUser.classList.add('is-invalid');
+        document.getElementById('invalidName').innerText = "Harap pilih Jenis Kelamin!";
+    }else
+    {
+        jkUser.classList.remove('is-invalid');
+        jkUser.classList.add('is-valid');
     }
 };
 
@@ -299,20 +314,6 @@ fotoProfilUser.onchange = function()
     }
 };
 
-genderUser.onblur = function()
-{
-    if(isEmpty(genderUser.value))
-    {
-        genderUser.classList.remove('is-valid');
-        genderUser.classList.add('is-invalid');
-        document.getElementById('invalidSelectGender').innerText = "Mohon pilih gender anda.";
-    }else
-    {
-        genderUser.classList.remove('is-invalid');
-        genderUser.classList.add('is-valid');
-    }
-}
-
 formRegister.addEventListener('submit', function(event){
 
     if(termsAgreement.checked == false)
@@ -331,7 +332,7 @@ formRegister.addEventListener('submit', function(event){
         if(namaUser.classList.contains('is-invalid') || alamatUser.classList.contains('is-invalid') ||
            notelpUser.classList.contains('is-invalid') || emailUser.classList.contains('is-invalid') ||
            passwordUser.classList.contains('is-invalid') || confPassword.classList.contains('is-invalid')
-           || fotoProfilUser.classList.contains('is-invalid') || genderUser.classList.contains('is-invalid') )
+           || fotoProfilUser.classList.contains('is-invalid'))
         {
             $('#modalWarning').modal('show');
             document.getElementById('modalWarningMessage').innerText = "Harap mengisi form dengan baik dan benar. Isilah form sesuai dengan petunjuk yang diberikan.";

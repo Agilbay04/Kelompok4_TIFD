@@ -9,12 +9,12 @@
         //Menyimpan data kedalam variabel
         $id_user = $_SESSION['ID_USER'];
         $namaUser = htmlspecialchars(stripcslashes($_POST['namaUserProfile']));
+        $jkUser = htmlspecialchars(stripcslashes($_POST['jkUserProfile']));
         $alamatUser = htmlspecialchars(stripcslashes($_POST['alamatUserProfile']));
         $notelpUser = htmlspecialchars(stripcslashes($_POST['notelpUserProfile']));
-        $genderUser = htmlspecialchars(stripcslashes($_POST['genderUserProfile']));
 
         //Query
-        $query = "update user set nama_user = '".$namaUser."', alamat_user = '".$alamatUser."', no_hp_user = '".$notelpUser."', jenis_kelamin = '".$genderUser."' where id_user = ".$id_user;
+        $query = "update user set nama_user = '".$namaUser."', jk_user = '".$jkUser."', alamat_user = '".$alamatUser."', no_hp_user = '".$notelpUser."' where id_user = ".$id_user;
 
         //Jalankan Query
         if(mysqli_query($conn, $query))

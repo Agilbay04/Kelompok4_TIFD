@@ -1,28 +1,6 @@
-var link = window.location.href.split("?").pop().split("&").pop().split("=");
+var link = window.location.href.split("?").pop().split("=");
 
 checkError(link);
-checkSuccess(link);
-
-//Success Message
-function checkSuccess(value)
-{
-
-    //Register
-    if(value.includes("successregister","true"))
-    {
-        $('#modalWarning').modal('show');
-        document.getElementById('modalWarningMessage').innerText = "Registrasi anda berhasil, harap periksa email anda.";
-    }
-
-    //Payment
-    if(value.includes("successupload","true"))
-    {
-        $('#modalWarning').modal('show');
-        document.getElementById('modalWarningMessage').innerText = "Anda berhasil mengunggah bukti pembayaran. Harap tunggu verifikasi dari administrator dalam waktu 2 x 24 jam. Pesanan anda akan segera di proses.";
-    }
-
-}
-
 
 function checkError(value)
 {
@@ -103,19 +81,5 @@ function checkError(value)
         document.getElementById('modalWarningMessage').innerText = "Akun anda belum teraktivasi, harap periksa email anda untuk aktivasi akun.";
     }
 
-    //Laptop
-    if(value.includes("systemerror","laptopfound"))
-    {
-        $('#modalWarning').modal('show');
-        document.getElementById('modalWarningMessage').innerText = "Laptop yang anda pilih sudah terdaftar.";
-    }
-
-
-    //Payment Pelanggan
-    if(value.includes("alreadyuploaded","true"))
-    {
-        $('#modalWarning').modal('show');
-        document.getElementById('modalWarningMessage').innerText = "Anda sudah mengunggah bukti pembayaran. Harap hubungi admin jika terjadi kesalahan mengunggah.";
-    }
 
 }

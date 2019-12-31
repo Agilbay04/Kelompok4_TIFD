@@ -70,39 +70,30 @@
 
         //Membuat query 
         $query = "insert into bukti_bayar values('','".$id_transaksi."','".$id_user."','".$newFileName."')";
-        $query_select = "select * from bukti_bayar where ID_TRANSAKSI = ".$id_transaksi." and ID_USER = ".$id_user;
 
-        $result_select = mysqli_query($conn,$query_select);
-        
+        $result = mysqli_query($conn,$query);
 
-        if(mysqli_num_rows($result_select) > 0)
+        if($result)
         {
-            header("Location: ../../payment_plg.php?payment=true&idtransaksi=".$id_transaksi."&alreadyuploaded=true");
-        }else
-        {
-            if($result = mysqli_query($conn,$query))
+            //Membuat query untuk update
+            $update_query = "update transaksi set STATUS_TRANSAKSI = '1' where ID_TRANSAKSI = '".$id_transaksi."'";
+
+            $result_update = mysqli_query($conn,$update_query);
+
+            if($result_update)
             {
-                //Membuat query untuk update
-                $update_query = "update transaksi set STATUS_TRANSAKSI = '1' where ID_TRANSAKSI = '".$id_transaksi."'";
-
-                $result_update = mysqli_query($conn,$update_query);
-
-                if($result_update)
-                {
-                    //Mengupload gambar
-                    move_uploaded_file($tmpName, '../images/user_bukti_bayar/'.$newFileName);
-                    header("Location: ../../payment_plg.php?payment=true&idtransaksi=".$id_transaksi."&successupload=true");    
-                }else
-                {
-                    header("Location: ../../payment_plg.php?payment=true&idtransaksi=".$id_transaksi."&systemerror=true");
-                }
-
+                //Mengupload gambar
+                move_uploaded_file($tmpName, '../images/user_bukti_bayar/'.$newFileName);
+                header("Location: ../../payment_plg.php?payment=true&idtransaksi=".$id_transaksi."&successupload=true");    
             }else
             {
-                header("Location: ../../payment_plg.php?payment=true&idtransaksi=".$id_transaksi."&systemerror=true'");
+                header("Location: ../../payment_plg.php?payment=true&idtransaksi=".$id_transaksi."&systemerror=true");
             }
+
+        }else
+        {
+            header("Location: ../../payment_plg.php?payment=true&idtransaksi=".$id_transaksi."&systemerror=true'");
         }
-        
 
     }else
     {

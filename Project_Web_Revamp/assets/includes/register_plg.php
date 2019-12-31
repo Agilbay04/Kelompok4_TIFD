@@ -17,17 +17,18 @@
 
         //Menyimpan data dari form kedalam variabel
         $namaUser = htmlspecialchars($_POST['namaUser']);
+        $jkUser = htmlspecialchars($_POST['jkUser']);
         $alamatUser = htmlspecialchars($_POST['alamatUser']);
         $notelpUser = htmlspecialchars($_POST['notelpUser']);
         $emailUser = htmlspecialchars(strtolower(stripcslashes($_POST['emailUser'])));
         $passwordUser = htmlspecialchars(strtolower(stripcslashes($_POST['passwordUser'])));
         $fileUser = $_FILES['fotoProfilUser'];
-        $genderUser = htmlspecialchars(stripcslashes($_POST['selectGender']));
         $tokenUser = uniqid();
         $url_aktivasi_akun = "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/aktivasi_acc.php?token=".$tokenUser;
 
         //Simpan Session untuk mengisi ulang form jika user gagal mendaftar
         $_SESSION['namaUserRegister'] = $namaUser;
+        $_SESSION['jkUserRegister'] = $jkUser;
         $_SESSION['alamatUserRegister'] = $alamatUser;
         $_SESSION['notelpUserRegister'] = $notelpUser;
         $_SESSION['emailUserRegister'] = $emailUser;
@@ -105,11 +106,12 @@
         }else
         {
             //Menginsert kedalam database
-            $sql_insert = "insert into user values('','".$namaUser."','".$genderUser."','".$alamatUser."','".$notelpUser."',
+            $sql_insert = "insert into user values('','".$namaUser."','".$jkUser."','".$alamatUser."','".$notelpUser."',
             '".$emailUser."','".$passwordEncrypt."','".$fileNameNew."','".$tokenUser."',2,'".date("Y-m-d")."',0)";
             
             //Mengosongkan session jika user berhasil mendaftar
             $_SESSION['namaUserRegister'] = "";
+            $_SESSION['jkUserRegister'] = "";
             $_SESSION['alamatUserRegister'] = "";
             $_SESSION['notelpUserRegister'] = "";
             $_SESSION['emailUserRegister'] = "";
