@@ -14,7 +14,11 @@
         $notelpUser = htmlspecialchars(stripcslashes($_POST['notelpUserProfile']));
 
         //Query
+<<<<<<< HEAD
         $query = "update user set nama_user = '".$namaUser."', jk_user = '".$jkUser."', alamat_user = '".$alamatUser."', no_hp_user = '".$notelpUser."' where id_user = ".$id_user;
+=======
+        $query = "update user set nama_user = '".$namaUser."', alamat_user = '".$alamatUser."', no_hp_user = '".$notelpUser."' where id_user = ".$id_user;
+>>>>>>> parent of b4d1fe0... Mengimplementasikan gender kedalam update profile
 
         //Jalankan Query
         if(mysqli_query($conn, $query))
