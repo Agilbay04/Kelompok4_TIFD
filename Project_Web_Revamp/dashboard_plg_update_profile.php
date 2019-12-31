@@ -38,6 +38,7 @@
                         <div class="invalid-feedback" id="invalidUpdateNama"></div>
                     </div>
                     <div class="form-group">
+<<<<<<< HEAD
                         <label for="jkUserProfile" class="font-weight-bold"> Jenis Kelamin  </label>
                         <input type="text" name="jkUserProfile" id="jkUserProfile" class="form-control" value="<?php echo $fetch['JENIS_KELAMIN'];?>" placeholder="Choose your gender...." disabled>
                     </div>
