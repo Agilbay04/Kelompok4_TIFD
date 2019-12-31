@@ -106,7 +106,11 @@
         }else
         {
             //Menginsert kedalam database
+<<<<<<< HEAD
             $sql_insert = "insert into user values('','".$namaUser."','".$jkUser."','".$alamatUser."','".$notelpUser."',
+=======
+            $sql_insert = "insert into user values('','".$namaUser."','".$alamatUser."','".$notelpUser."',
+>>>>>>> parent of 74200a1... Melakukan perubahan
             '".$emailUser."','".$passwordEncrypt."','".$fileNameNew."','".$tokenUser."',2,'".date("Y-m-d")."',0)";
             
             //Mengosongkan session jika user berhasil mendaftar
