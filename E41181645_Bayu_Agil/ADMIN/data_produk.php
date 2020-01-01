@@ -486,7 +486,7 @@
                     ?>
                       <tr>
                         <td class="text-center"><?= $i; ?></td>
-                        <td class="text-center"><img src="img/<?= $row["GAMBAR_LAPTOP"]; ?>" alt="gambar laptop" width="100"></td>
+                        <td class="text-center"><img src="../../Project_Web_Revamp/assets/images/<?= $row["GAMBAR_LAPTOP"]; ?>" alt="gambar laptop" width="100"></td>
                         <td class="text-center"><?= $row["NAMA_LAPTOP"]; ?></td>
                         <td class="text-center"><?= $row["PROCESSOR"]; ?></td>
                         <td class="text-center"><?= $row["RAM"]; ?></td>

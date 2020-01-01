@@ -72,7 +72,7 @@
         $namaFileBaru  = uniqid();
         $namaFileBaru .= '.';
         $namaFileBaru .= $ekstensiGambar;
-        move_uploaded_file($tmpName, 'img/' . $namaFileBaru);
+        move_uploaded_file($tmpName, '../../Project_Web_Revamp/assets/images/' . $namaFileBaru);
         return $namaFileBaru;
     } 
 ?>

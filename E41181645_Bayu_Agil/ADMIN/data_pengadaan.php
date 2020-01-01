@@ -472,7 +472,7 @@
                         <td class="text-center"><?= $row["TANGGAL_PENGADAAN_BARANG"]; ?></td>
                         <td class="text-center">
                         <span>
-                            <a href="hapus_ADM.php?id=<?=  $row['ID_USER']; ?>" onclick="return confirm('Anda yakin mau menghapus data ini ?')" class="btn btn-danger btn-circle btn-sm">
+                            <a href="hapus_PNGD.php?id=<?=  $row['ID_PENGADAAN_BARANG']; ?>" onclick="return confirm('Anda yakin mau menghapus data ini ?')" class="btn btn-danger btn-circle btn-sm">
                               <button type="button" class="btn btn-circle" style="color: white">
                                 <i class="fas fa-trash"></i>
                               </button>  
