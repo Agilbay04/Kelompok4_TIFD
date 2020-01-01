@@ -92,16 +92,6 @@
                 <div class="form-group">
                   <input type="text" class="form-control form-control-user" id="exampleInputEmail" name="aktivasi" readonly hidden value="<?= $row['STATUS_AKTIVASI']; ?>">
                 </div>
-                <hr>
-                <div class="text-center">
-                  <h2 class="h5 text-gray-900 mb-4">Ubah Password ?</h2>
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control form-control-user" id="exampleInputpsw" placeholder="Masukkan Password baru" name="psw1">
-                </div>
-                <div class="form-group">
-                  <input type="password" class="form-control form-control-user" id="exampleInputpsw" placeholder="Konfirmasi Password" name="psw2">
-                </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block" name="edit"> Ubah </button>
                 <a href="data_admin.php" class="btn btn-primary btn-user btn-block" name="batal">Batal</a>
                 <!-- <hr> -->

@@ -164,6 +164,27 @@
       </li>
 
       <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Riwayat Pengadaan Barang
+      </div>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePengadaan" aria-expanded="true" aria-controls="collapsePengadaan">
+          <i class="fas fa-fw fa-truck-pickup"></i>
+          <span>Pengadaan Barang</span>
+        </a>
+        <div id="collapsePengadaan" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Pengadaan Barang:</h6>           
+            <a class="collapse-item" href="data_pengadaan.php">Pengadaan Barang</a>  
+        </div>
+      </li>
+
+      <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
       <!-- Sidebar Toggler (Sidebar) -->
@@ -357,9 +378,9 @@
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
+                <a class="dropdown-item" href="ubahpsw.php?id=<?= $_SESSION["ID_USER"]; ?>">
+                  <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Ubah Password
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -408,11 +429,8 @@
                         <th class="text-center">Total</th>
                         <th class="text-center">Status Transaksi</th>
                         <th class="text-center">Tanggal Transaksi</th>
-                        <?php if($_SESSION['ID_USER'] == "2" || $_SESSION['ID_USER'] == "3") { ?>
+                        <th class="text-center">Bukti Bayar</th>
                         <th class="text-center">Action</th>
-                        <?php } else { ?>
-                        
-                        <?php } ?>  
                     </tr>
                   </thead>
                   <tfoot>
@@ -426,22 +444,20 @@
                         <th class="text-center">Total</th>
                         <th class="text-center">Status Transaksi</th>
                         <th class="text-center">Tanggal Transaksi</th>
-                        <?php if($_SESSION['ID_USER'] == "2" || $_SESSION['ID_USER'] == "3") { ?>
+                        <th class="text-center">Bukti Bayar</th>
                         <th class="text-center">Action</th>
-                        <?php } else { ?>
-                        
-                        <?php } ?>
                     </tr>
                   </tfoot>
                   <tbody>
-                    <?php if($_SESSION['HAK_AKSES_USER'] == 0) {  ?>
                     <?php $i = 1;?>
                     <?php 
-                      $sql = mysqli_query($conn, $sql = "select transaksi.ID_TRANSAKSI, transaksi.ID_USER, transaksi.TANGGAL_TRANSAKSI, transaksi.STATUS_TRANSAKSI, detail_transaksi.JUMLAH_BELI, user.NAMA_USER,laptop.ID_LAPTOP, laptop.NAMA_LAPTOP,\n"
+                      $sql = mysqli_query($conn, $sql = "select laptop.GAMBAR_LAPTOP, bukti_bayar.BUKTI_BAYAR, transaksi.ID_TRANSAKSI, transaksi.ID_USER, transaksi.TANGGAL_TRANSAKSI, transaksi.STATUS_TRANSAKSI, detail_transaksi.JUMLAH_BELI, user.NAMA_USER, laptop.ID_LAPTOP, laptop.NAMA_LAPTOP,\n"
 
                       . "det_laptop.ID_DET_LAPTOP, det_laptop.HARGA_JUAL from transaksi inner join detail_transaksi on transaksi.ID_TRANSAKSI = detail_transaksi.ID_TRANSAKSI \n"
                   
-                      . "inner join det_laptop on detail_transaksi.ID_DET_LAPTOP = det_laptop.ID_DET_LAPTOP inner join laptop on det_laptop.ID_LAPTOP = laptop.ID_LAPTOP inner join user on transaksi.ID_USER = user.ID_USER");
+                      . "inner join det_laptop on detail_transaksi.ID_DET_LAPTOP = det_laptop.ID_DET_LAPTOP inner join laptop on det_laptop.ID_LAPTOP = laptop.ID_LAPTOP inner join user on transaksi.ID_USER = user.ID_USER \n"
+                    
+                      . "inner join bukti_bayar on transaksi.ID_TRANSAKSI = bukti_bayar.ID_TRANSAKSI");
                       while($row = mysqli_fetch_assoc($sql)) { 
                       $tgl = date('d-m-Y', strtotime($row['TANGGAL_TRANSAKSI'])); // Ubah format tanggal jadi dd-mm-yyyy                     
                     ?>
@@ -450,16 +466,19 @@
                         <td class="text-center"><?= $row["ID_TRANSAKSI"]; ?></td>
                         <td class="text-center"><?= $row["NAMA_USER"]; ?></td>
                         <td class="text-center"><?= $row["NAMA_LAPTOP"]; ?></td>
-                        <td class="text-center"><img src="<?= $row["GAMBAR_LAPTOP"]; ?>" alt="gambar laptop"></td>
+                        <td class="text-center"><img src="img/<?= $row["GAMBAR_LAPTOP"]; ?>" alt="gambar laptop" width="100"></td>
                         <td class="text-center"><?= $row["JUMLAH_BELI"]; ?></td>
-                        <td class="text-center"><?= $row["JUMLAH_BELI"] * $row["HARGA_JUAL"]; ?></td>
+                        <td class="text-center"><?="Rp." . number_format($row["JUMLAH_BELI"] * $row["HARGA_JUAL"], 0, ".", "."); ?></td>
                         <?php $status = $row["STATUS_TRANSAKSI"]; ?>
                         <td class="text-center"><?php if($status == 0) {
                           echo '<span class="badge badge-pill badge-danger px-2">Belum Bayar</span>';
-                        } else if($status == 1) {
+                        } elseif($status == 1) {
+                          echo '<span class="badge badge-pill badge-warning px-2">Menunggu Verifikasi</span>';
+                        } elseif($status == 2) {
                           echo '<span class="badge badge-pill badge-success px-2">Sudah Bayar</span>';
                         }?></td>
                         <td class="text-center"><?= $row["TANGGAL_TRANSAKSI"]; ?></td>
+                        <td class="text-center"><?= $row["BUKTI_BAYAR"]; ?></td>
                         <td class="text-center">
                         <span>
                             <div class="btn-group mt-4 mb-2">
@@ -480,56 +499,6 @@
                     </tr>
                     <?php $i++; ?>
                   <?php } ?>
-                <?php } elseif($_SESSION['HAK_AKSES_USER'] == 1) { ?>
-                    <?php $i = 1;?>
-                    <?php 
-                      $sql = mysqli_query($conn, $sql = "SELECT transaksi.ID_TRANSAKSI, transaksi.ID_USER, transaksi.STATUS_TRANSAKSI,transaksi.TANGGAL_TRANSAKSI, detail_transaksi.JUMLAH_BELI, user.NAMA_USER,laptop.ID_LAPTOP, laptop.NAMA_LAPTOP,\n"
-
-                      . "laptop.GAMBAR_LAPTOP, det_laptop.ID_DET_LAPTOP, det_laptop.HARGA_JUAL from transaksi inner join detail_transaksi on transaksi.ID_TRANSAKSI = detail_transaksi.ID_TRANSAKSI \n"
-                  
-                      . "inner join det_laptop on detail_transaksi.ID_DET_LAPTOP = det_laptop.ID_DET_LAPTOP inner join laptop on det_laptop.ID_LAPTOP = laptop.ID_LAPTOP inner join user on transaksi.ID_USER = user.ID_USER");
-                      while($row = mysqli_fetch_assoc($sql)) {                      
-                    ?>
-                      <tr>
-                        <td class="text-center"><?= $i; ?></td>
-                        <td class="text-center"><?= $row["ID_TRANSAKSI"]; ?></td>
-                        <td class="text-center"><?= $row["NAMA_USER"]; ?></td>
-                        <td class="text-center"><?= $row["NAMA_LAPTOP"]; ?></td>
-                        <td class="text-center"><img src="<?= $row["GAMBAR_LAPTOP"]; ?>" alt="gambar laptop"></td>
-                        <td class="text-center"><?= $row["JUMLAH_BELI"]; ?></td>
-                        <td class="text-center"><?= "Rp." . number_format($row["JUMLAH_BELI"] * $row["HARGA_JUAL"], 0, ".", "."); ?></td>
-                        <?php $status = $row["STATUS_TRANSAKSI"]; ?>
-                        <td class="text-center"><?php if($status == 0) {
-                          echo '<span class="badge badge-pill badge-danger px-4">Belum Bayar</span>';
-                        } else if($status == 1) {
-                          echo '<span class="badge badge-pill badge-success px-4">Sudah Bayar</span>';
-                        }?></td>
-                        <td class="text-center"><?= $row["TANGGAL_TRANSAKSI"]; ?></td>
-                        <?php if($_SESSION['NAMA_USER'] == "Andreanto" ) { ?>
-                        <td class="text-center">
-                        <span>
-                          <div class="btn-group mt-4 mb-2">
-                            <a href="cek.php?id=<?= $row['ID_TRANSAKSI']; ?>" class="btn btn-success btn-circle btn-sm" name="cek">
-                              <button type="button" class="btn btn-circle">                                  
-                                <i class="fas fa-check" style="color: white"></i>
-                              </button>  
-                            </a>
-                            &nbsp;
-                            <a href="hapus_ADM.php?id=<?=  $row['ID_USER']; ?>" onclick="return confirm('Anda yakin mau menghapus data ini ?')" class="btn btn-danger btn-circle btn-sm">
-                              <button type="button" class="btn btn-circle" style="color: white">
-                                <i class="fas fa-trash"></i>
-                              </button>  
-                            </a>
-                          </div>
-                        </span>
-                        </td>
-                        <?php } else {  ?>
-                        
-                        <?php } ?>
-                    </tr>
-                    <?php $i++; ?>
-                  <?php } ?>
-                <?php }  ?>
                   </tbody>
                 </table>
               </div>

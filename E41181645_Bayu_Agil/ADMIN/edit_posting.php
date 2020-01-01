@@ -13,6 +13,17 @@ if (isset($_POST['ubah'])) { // Jika user menceklis checkbox yang ada di form ub
   $foto = $_FILES['foto']['name'];
   $tmp = $_FILES['foto']['tmp_name'];
 
+  // cek apakah itu upload gambar atau bukan
+  $ekstensiGambarValid  = ['jpg', 'jpeg', 'png', 'svg'];
+  $ekstensiGambar       = explode('.', $foto);
+  $ekstensiGambar       = strtolower(end($ekstensiGambar));
+  if(!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+      echo "<script>
+              alert('Yang anda upload bukan Gambar');
+          </script>";
+      return false;
+      }
+
   // Rename nama fotonya dengan menambahkan tanggal dan jam upload
   $fotobaru = date('dmYHis') . $foto;
 

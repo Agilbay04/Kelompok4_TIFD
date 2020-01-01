@@ -2,11 +2,13 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 require 'connection.php';
-$sql = mysqli_query($conn, $sql = "select transaksi.ID_TRANSAKSI, transaksi.ID_USER, transaksi.TANGGAL_TRANSAKSI, transaksi.STATUS_TRANSAKSI, detail_transaksi.JUMLAH_BELI, user.NAMA_USER,laptop.ID_LAPTOP, laptop.NAMA_LAPTOP,\n"
+$sql = mysqli_query($conn, $sql = "select bukti_bayar.BUKTI_BAYAR, transaksi.ID_TRANSAKSI, transaksi.ID_USER, transaksi.TANGGAL_TRANSAKSI, transaksi.STATUS_TRANSAKSI, detail_transaksi.JUMLAH_BELI, user.NAMA_USER,laptop.ID_LAPTOP, laptop.NAMA_LAPTOP,\n"
 
 . "laptop.GAMBAR_LAPTOP, det_laptop.ID_DET_LAPTOP, det_laptop.HARGA_JUAL from transaksi inner join detail_transaksi on transaksi.ID_TRANSAKSI = detail_transaksi.ID_TRANSAKSI \n"
 
-. "inner join det_laptop on detail_transaksi.ID_DET_LAPTOP = det_laptop.ID_DET_LAPTOP inner join laptop on det_laptop.ID_LAPTOP = laptop.ID_LAPTOP inner join user on transaksi.ID_USER = user.ID_USER");
+. "inner join det_laptop on detail_transaksi.ID_DET_LAPTOP = det_laptop.ID_DET_LAPTOP inner join laptop on det_laptop.ID_LAPTOP = laptop.ID_LAPTOP inner join user on transaksi.ID_USER = user.ID_USER \n"
+
+. "inner join bukti_bayar on transaksi.ID_TRANSAKSI = bukti_bayar.ID_TRANSAKSI");
 
 $mpdf = new \Mpdf\Mpdf();
 $html = '<!DOCTYPE html>
@@ -35,6 +37,7 @@ $html = '<!DOCTYPE html>
             <th class="text-center">Total</th>
             <th class="text-center">Status Transaksi</th>
             <th class="text-center">Tanggal Transaksi</th>
+            <th class="text-center">Bukti Bayar</th>
         </tr>';
         $i = 1; 
         while($row = mysqli_fetch_assoc($sql)) { 
@@ -50,11 +53,14 @@ $html = '<!DOCTYPE html>
             $trn = $row["STATUS_TRANSAKSI"];
             if($trn == 0){
                 $trn ="BELUM BAYAR";
-            } else {
+            } elseif ($trn == 1) {
+                $trn ="MENUNGGU VERIFIKASI";
+            } elseif ($trn == 2) {
                 $trn ="SUDAH BAYAR";
             }
             $html .= '<td class="text-center">'.$trn.'</td>
             <td class="text-center">'.$row["TANGGAL_TRANSAKSI"].'</td>
+            <td class="text-center">'.$row["BUKTI_BAYAR"].'</td>
         </tr>';
         $i++;
         }

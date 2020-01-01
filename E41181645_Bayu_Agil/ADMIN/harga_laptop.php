@@ -79,25 +79,46 @@
           <div class="col-lg-12">
             <div class="p-5">
               <div class="text-center">
-                <h1 class="h4 text-gray-900 mb-4">Pengadaan Barang!</h1>
+                <h1 class="h4 text-gray-900 mb-4">Tentukan Harga!</h1>
               </div>
-              <form action="function_pengadaan.php" class="user" method="post" enctype="multipart/form-data">
+              <form action="function_harga.php" class="user" method="post" enctype="multipart/form-data">
                 <div class="input-group mb-3">
                   <select class="custom-select" id="inputGroupSelect01" name="laptop" require>
                     <option selected>Pilih Laptop...</option>
                     <?php 
-                      $sql = mysqli_query($conn, "SELECT * FROM det_laptop INNER JOIN laptop ON det_laptop.ID_LAPTOP = laptop.ID_LAPTOP");
+                      $sql = mysqli_query($conn, "SELECT * FROM laptop");
                       while($row = mysqli_fetch_assoc($sql)) { 
                     ?>
-                    <option value="<?= $row["ID_DET_LAPTOP"]; ?>"><?= $row["NAMA_LAPTOP"]; ?></option>
+                    <option value="<?= $row["ID_LAPTOP"]; ?>"><?= $row["NAMA_LAPTOP"]; ?></option>
                     <?php } ?>
                   </select>
                 </div>
-                <div class="form-group">    
-                  <input type="text" class="form-control form-control-user" id="stok" placeholder="Stok" name="stok" require>
-                </div> 
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Rp.</span>
+                  </div>
+                  <input type="text" class="form-control" id="beli" placeholder="Harga Beli" name="beli" require>
+                </div>
+                <br>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Rp.</span>
+                  </div>    
+                  <input type="text" class="form-control" id="jual" placeholder="Harga Jual" name="jual" require>
+                </div>
+                <br>  
+                <div class="input-group mb-3">
+                  <select class="custom-select" id="inputGroupSelect01" name="garansi">
+                    <option selected>Status Garansi...</option>
+                    <option value="1">Ada</option>
+                    <option value="0">Tidak</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control form-control-user" id="lama" placeholder="Lama Garansi" name="lama">
+                </div>
                 <button type="submit" class="btn btn-primary btn-user btn-block" name="simpan"> Simpan </button>
-                <a href="data_pengadaan.php" class="btn btn-primary btn-user btn-block" name="batal"> Batal </a>
+                <a href="data_produk.php" class="btn btn-primary btn-user btn-block" name="batal"> Batal </a>
               </form>
             </div>
           </div>

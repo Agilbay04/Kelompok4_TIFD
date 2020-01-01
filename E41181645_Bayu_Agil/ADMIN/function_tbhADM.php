@@ -15,13 +15,13 @@
         $tanggal    = date("Y-m-d H:i:s");
         $result     = mysqli_query($conn, "SELECT EMAIL_USER FROM user WHERE EMAIL_USER = '$email'");
         
-        if($foto == NULL) {
+        if(empty($foto)) {
             $fotoProfil = 'user.png';
         }
 
-        if(!$fotoProfil) {
-            return false;
-        }
+        // if(!$fotoProfil) {
+        //     return false;
+        // }
 
         // Cek apakah username yang ditambahkan sudah ada
         if (mysqli_fetch_assoc($result)) {
@@ -38,8 +38,8 @@
         {
             // insert data ke database
             $password = password_hash($password, PASSWORD_BCRYPT);
-            $insert_sql = "INSERT INTO user VALUES('','".$nama."','".$jk."','".$alamat."','".$nohp."','".$email."', '".$password."','".$fotoProfil."','',1,'".$tanggal."','')";
-            
+            $insert_sql = "INSERT INTO user(ID_USER, NAMA_USER, JENIS_KELAMIN, ALAMAT_USER, NO_HP_USER, EMAIL_USER, PASSWORD_USER, FOTO_PROFIL_USER, TOKEN_USER, HAK_AKSES_USER, TANGGAL_DAFTAR, STATUS_AKTIVASI) VALUES ('','".$nama."','".$jk."','".$alamat."','".$nohp."','".$email."', '".$password."','".$fotoProfil."','',1,'".$tanggal."','')";
+            var_dump($insert_sql);
             $var = mysqli_query($conn, $insert_sql);
             if($var == true)
             {
@@ -70,7 +70,7 @@
         // }
     
         // cek apakah itu upload gambar atau bukan
-        $ekstensiGambarValid  = ['jpg', 'jpeg', 'png','svg'];
+        $ekstensiGambarValid  = ['jpg', 'jpeg', 'png', 'svg'];
         $ekstensiGambar       = explode('.', $namaFile);
         $ekstensiGambar       = strtolower(end($ekstensiGambar));
         if(!in_array($ekstensiGambar, $ekstensiGambarValid)) {

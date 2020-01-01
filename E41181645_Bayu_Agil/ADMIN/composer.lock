@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bcec64da22439307da9658c003f7e93f",
+    "content-hash": "9b59c64ae68bb66c8ce8273a6e07963c",
     "packages": [
         {
             "name": "igorescobar/jquery-mask-plugin",

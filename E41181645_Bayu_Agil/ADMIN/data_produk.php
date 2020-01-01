@@ -56,7 +56,7 @@
   
         if($result === 'success')
         {
-          echo "<script>alert('Pengadaan barang berhasil');</script>";
+          echo "<script>alert('Harga barang berhasil ditambahkan');</script>";
         }else
         {
           
@@ -175,6 +175,27 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Data Transaksi:</h6>           
             <a class="collapse-item" href="data_transaksi.php">Data Transaksi</a>  
+        </div>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Riwayat Pengadaan Barang
+      </div>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePengadaan" aria-expanded="true" aria-controls="collapsePengadaan">
+          <i class="fas fa-fw fa-truck-pickup"></i>
+          <span>Pengadaan Barang</span>
+        </a>
+        <div id="collapsePengadaan" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Pengadaan Barang:</h6>           
+            <a class="collapse-item" href="data_pengadaan.php">Pengadaan Barang</a>  
         </div>
       </li>
 
@@ -372,9 +393,9 @@
                   <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                   Profile
                 </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
+                <a class="dropdown-item" href="ubahpsw.php?id=<?= $_SESSION["ID_USER"];?>">
+                  <i class="fas fa-user-edit fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Ubah Password
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -414,8 +435,8 @@
                 <span class="text"><b>+ DATA PRODUK</b></span>
               </a>
 
-              <a href="pengadaan_brg.php" class="btn btn-success btn-icon-split">
-                <span class="text"><b>+ PENGADAAN BARANG</b></span>
+              <a href="harga_laptop.php" class="btn btn-success btn-icon-split">
+                <span class="text"><b>HARGA</b></span>
               </a>
               <div class="my-2"></div>
 

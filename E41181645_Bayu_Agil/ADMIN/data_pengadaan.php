@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>RIZQUINA Admin | Pelanggan</title>
+  <title>RIZQUINA Admin | Produk</title>
 
   <!-- Custom fonts for this template -->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -39,7 +39,7 @@
   
         if($message === 'success')
         {
-          echo "<script>alert('User baru berhasil ditambahkan');</script>";
+          echo "<script>alert('Produk baru berhasil ditambahkan');</script>";
         }else
         {
           
@@ -48,6 +48,23 @@
       }else
       {
         $message = '';
+      }
+
+      if(isset($_GET['result']))
+      {
+        $result = $_GET['result'];
+  
+        if($result === 'success')
+        {
+          echo "<script>alert('Pengadaan barang berhasil');</script>";
+        }else
+        {
+          
+        }
+  
+      }else
+      {
+        $result = '';
       }
     
 ?>
@@ -349,8 +366,8 @@
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
-            <!-- Nav Item - User Information -->
-            <?php if(!isset($_SESSION["login"])) { ?>
+          <!-- Nav Item - User Information -->
+          <?php if(!isset($_SESSION["login"])) { ?>
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">User</span>
@@ -404,85 +421,68 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Data Pelanggan</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Riwayat Pengadaan Barang</h6>
           </div>
             <div class="card-body">
-              <a href="print_pelanggan.php" class="btn btn-warning btn-fa-split" target="_blank">
+              <a href="print_pengadaan.php" class="btn btn-warning btn-fa-split" target="_blank">
                 <span class="icon text-white-50">
                       <i class="fas fa-print"></i>
                 </span>
                 <span class="text"><b>CETAK</b></span>
               </a>
+
+              <a href="function_pengadaan.php" class="btn btn-success btn-icon-split">
+                <span class="text"><b>PENGADAAN BARANG</b></span>
+              </a>
               <div class="my-2"></div>
+
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                         <th class="text-center">No.</th>
-                        <th class="text-center">Nama Pelanggan</th>
-                        <th class="text-center">Jenis Kelamin</th>
-                        <th class="text-center">Alamat</th>
-                        <th class="text-center">No. HP</th>
-                        <th class="text-center">Email</th>
-                        <th class="text-center">Foto Profil</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Status Aktivasi</th>
-                        <th class="text-center">Tanggal Daftar</th>
+                        <th class="text-center">Nama Admin</th>
+                        <th class="text-center">Nama Laptop</th>
+                        <th class="text-center">Stok</th>
+                        <th class="text-center">Tanggal Pengadaan</th>
                         <th class="text-center">Action</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                         <th class="text-center">No.</th>
-                        <th class="text-center">Nama Pelanggan</th>
-                        <th class="text-center">Jenis Kelamin</th>
-                        <th class="text-center">Alamat</th>
-                        <th class="text-center">No. HP</th>
-                        <th class="text-center">Email</th>
-                        <th class="text-center">Foto Profil</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Status Aktivasi</th>
-                        <th class="text-center">Tanggal Daftar</th>
+                        <th class="text-center">Nama Admin</th>
+                        <th class="text-center">Nama Laptop</th>
+                        <th class="text-center">Stok</th>
+                        <th class="text-center">Tanggal Pengadaan</th>
                         <th class="text-center">Action</th>
                     </tr>
                   </tfoot>
                   <tbody>
                     <?php $i = 1;?>
                     <?php 
-                      $sql = mysqli_query($conn, "SELECT * FROM user WHERE HAK_AKSES_USER = 2");
-                      while($row = mysqli_fetch_assoc($sql)) {
+                      $sql = mysqli_query($conn, "SELECT * FROM pengadaan_barang inner join detail_pengadaan on detail_pengadaan.ID_PENGADAAN_BARANG = pengadaan_barang.ID_PENGADAAN_BARANG inner join user on pengadaan_barang.ID_USER = user.ID_USER inner join det_laptop on detail_pengadaan.ID_DET_LAPTOP = det_laptop.ID_DET_LAPTOP inner join laptop on det_laptop.ID_LAPTOP = laptop.ID_LAPTOP");
+                      while($row = mysqli_fetch_assoc($sql)) {                      
                     ?>
-                    <tr>
+                      <tr>
                         <td class="text-center"><?= $i; ?></td>
                         <td class="text-center"><?= $row["NAMA_USER"]; ?></td>
-                        <td class="text-center"><?= $row["JENIS_KELAMIN"]; ?></td>
-                        <td class="text-center"><?= $row["ALAMAT_USER"]; ?></td>
-                        <td class="text-center"><?= $row["NO_HP_USER"]; ?></td>
-                        <td class="text-center"><?= $row["EMAIL_USER"]; ?></td>
-                        <td class="text-center"><img src="img/<?= $row["FOTO_PROFIL_USER"]; ?>" alt="foto profil" width="100"></td>
-                        <?php $hak_akses = $row["HAK_AKSES_USER"];?>
-                        <td class="text-center"><?php if($hak_akses == 2) {
-                          echo '<span class="badge badge-pill badge-warning px-2">Pelanggan</span>';
-                        }?></td>
-                        <?php $aktivasi = $row["STATUS_AKTIVASI"];?>
-                        <td class="text-center"><?php if($aktivasi == 0) {
-                          echo '<span class="badge badge-pill badge-danger px-2">Belum Aktivasi</span>';
-                        } else {
-                          echo '<span class="badge badge-pill badge-success px-2">Aktif</span>';
-                        }?></td>
-                        <td class="text-center"><?= $row["TANGGAL_DAFTAR"]; ?></td>
+                        <td class="text-center"><?= $row["NAMA_LAPTOP"]; ?></td>
+                        <td class="text-center"><?= $row["detail_stok_pengadaan"]; ?></td>
+                        <td class="text-center"><?= $row["TANGGAL_PENGADAAN_BARANG"]; ?></td>
                         <td class="text-center">
                         <span>
-                            <a href="hapus_PLG.php?id=<?=  $row['ID_USER']; ?>" onclick="return confirm('Anda yakin mau menghapus data ini ?')" class="btn btn-danger btn-circle btn-sm">
+                            <a href="hapus_ADM.php?id=<?=  $row['ID_USER']; ?>" onclick="return confirm('Anda yakin mau menghapus data ini ?')" class="btn btn-danger btn-circle btn-sm">
                               <button type="button" class="btn btn-circle" style="color: white">
                                 <i class="fas fa-trash"></i>
                               </button>  
                             </a>
+                            </div>
                         </span>
                         </td>
                     </tr>
                     <?php $i++; ?>
-                    <?php } ?>
+                  <?php } ?>
                   </tbody>
                 </table>
               </div>

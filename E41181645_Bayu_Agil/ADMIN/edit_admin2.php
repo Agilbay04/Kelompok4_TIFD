@@ -10,25 +10,33 @@ $jk   = $_POST['jk'];
 $alamat = $_POST['alamat'];
 $nohp = $_POST['nohp'];
 $email = $_POST['email'];
-$psw1 = $_POST['psw1'];
-$psw2 = $_POST['psw2'];
-
-if($psw1 !== $psw2) {
-  echo "<script>alert('Konfirmasi password tidak cocok');document.location.href='profil.php'</script>\n";
-  exit;
-} 
-
-if(isset($_POST['psw1'])) {
-  $psw1 = password_hash($psw1, PASSWORD_BCRYPT);
-  $sql = mysqli_query($conn, "UPDATE user SET PASSWORD_USER = '".$psw1."' WHERE ID_USER = '".$id."'");
-}
 
 // Cek apakah user ingin mengubah fotonya atau tidak
 if (isset($_POST['ubah'])) { // Jika user menceklis checkbox yang ada di form ubah, lakukan :
   // Ambil data foto yang dipilih dari form
   $foto = $_FILES['foto']['name'];
   $tmp = $_FILES['foto']['tmp_name'];
+  $ukuran =$_FILES['foto']['size'];
 
+  // cek apakah itu upload gambar atau bukan
+  $ekstensiGambarValid  = ['jpg', 'jpeg', 'png', 'svg'];
+  $ekstensiGambar       = explode('.', $foto);
+  $ekstensiGambar       = strtolower(end($ekstensiGambar));
+  if(!in_array($ekstensiGambar, $ekstensiGambarValid)) {
+      echo "<script>
+              alert('Yang anda upload bukan Gambar');
+          </script>";
+      return false;
+      }
+  
+  // cek jika ukuran gambar terlalu besar
+  if($ukuran > 1000000) {
+    echo "<script>
+            alert('Ukuran Gambar terlalu besar, maksimal 1 Mb');
+        </script>";
+    return false;
+  }
+  
   // Rename nama fotonya dengan menambahkan tanggal dan jam upload
   $fotobaru = date('dmYHis') . $foto;
 

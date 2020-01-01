@@ -101,6 +101,27 @@
       </li>
 
       <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Riwayat Pengadaan Barang
+      </div>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePengadaan" aria-expanded="true" aria-controls="collapsePengadaan">
+          <i class="fas fa-fw fa-truck-pickup"></i>
+          <span>Pengadaan Barang</span>
+        </a>
+        <div id="collapsePengadaan" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Pengadaan Barang:</h6>           
+            <a class="collapse-item" href="data_pengadaan.php">Pengadaan Barang</a>  
+        </div>
+      </li>
+
+      <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
       <!-- Sidebar Toggler (Sidebar) -->
