@@ -478,7 +478,7 @@
                           echo '<span class="badge badge-pill badge-success px-2">Sudah Bayar</span>';
                         }?></td>
                         <td class="text-center"><?= $row["TANGGAL_TRANSAKSI"]; ?></td>
-                        <td class="text-center"><?= $row["BUKTI_BAYAR"]; ?></td>
+                        <td class="text-center"><img src="../../Project_Web_Revamp/assets/images/user_bukti_bayar/<?= $row["BUKTI_BAYAR"]; ?>" alt="bukti bayar" width="100"></td>
                         <td class="text-center">
                         <span>
                             <div class="btn-group mt-4 mb-2">
@@ -488,7 +488,7 @@
                               </button>  
                             </a>
                             &nbsp;
-                            <a href="hapus_ADM.php?id=<?=  $row['ID_USER']; ?>" onclick="return confirm('Anda yakin mau menghapus data ini ?')" class="btn btn-danger btn-circle btn-sm">
+                            <a href="hapus_TRN.php?id=<?=  $row['ID_TRANSAKSI']; ?>" onclick="return confirm('Anda yakin mau menghapus data ini ?')" class="btn btn-danger btn-circle btn-sm">
                               <button type="button" class="btn btn-circle" style="color: white">
                                 <i class="fas fa-trash"></i>
                               </button>  

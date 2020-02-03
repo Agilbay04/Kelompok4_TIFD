@@ -459,7 +459,7 @@
                         <td class="text-center"><?= $row["ALAMAT_USER"]; ?></td>
                         <td class="text-center"><?= $row["NO_HP_USER"]; ?></td>
                         <td class="text-center"><?= $row["EMAIL_USER"]; ?></td>
-                        <td class="text-center"><img src="img/<?= $row["FOTO_PROFIL_USER"]; ?>" alt="foto profil" width="100"></td>
+                        <td class="text-center"><img src="../../Project_Web_Revamp/assets/images/user_images/<?= $row["FOTO_PROFIL_USER"]; ?>" alt="foto profil" width="100"></td>
                         <?php $hak_akses = $row["HAK_AKSES_USER"];?>
                         <td class="text-center"><?php if($hak_akses == 2) {
                           echo '<span class="badge badge-pill badge-warning px-2">Pelanggan</span>';

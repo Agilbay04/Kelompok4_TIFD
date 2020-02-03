@@ -38,10 +38,37 @@
                         <div class="invalid-feedback" id="invalidUpdateNama"></div>
                     </div>
                     <div class="form-group">
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
                         <label for="jkUserProfile" class="font-weight-bold"> Jenis Kelamin  </label>
                         <input type="text" name="jkUserProfile" id="jkUserProfile" class="form-control" value="<?php echo $fetch['JENIS_KELAMIN'];?>" placeholder="Choose your gender...." disabled>
+=======
+                        <label for="genderUserProfile" class="font-weight-bold"> Jenis Kelamin </label>
+                        <select name="genderUserProfile" id="genderUserProfile" class="form-control">
+                            <?php
+                            
+                                if(strtolower($fetch['JENIS_KELAMIN']) == "laki-laki")
+                                {
+                                    ?>
+                                        <option value="Laki-Laki" selected> Laki - Laki </option>
+                                        <option value="Perempuan"> Perempuan </option>
+                                    <?php
+                                }else if(strtolower($fetch['JENIS_KELAMIN']) == "perempuan")
+                                {
+                                    ?>
+                                        <option value="Laki-Laki"> Laki - Laki </option>
+                                        <option value="Perempuan" selected> Perempuan </option>
+                                    <?php
+                                }
+                            
+                            ?>
+                        </select>
+>>>>>>> parent of a049133... web user
                     </div>
                     <div class="form-group">
+=======
+>>>>>>> parent of b4d1fe0... Mengimplementasikan gender kedalam update profile
                         <label for="alamatUserProfile" class="font-weight-bold"> Alamat User </label>
                         <textarea name="alamatUserProfile" id="alamatUserProfile" class="form-control" ><?php echo $fetch['ALAMAT_USER'];?></textarea>
                         <div class="valid-feedback" id="validUpdateAlamat">Bagus!</div>
