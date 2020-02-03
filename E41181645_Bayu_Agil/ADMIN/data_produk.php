@@ -508,13 +508,13 @@
                         <td class="text-center">
                         <span>
                             <div class="btn-group mt-4 mb-2">
-                            <a href="ubah_dtaADM.php?id=<?= $row['ID_USER']; ?>" class="btn btn-info btn-circle btn-sm">
+                            <a href="ubah_dtaADM.php" class="btn btn-info btn-circle btn-sm">
                               <button type="button" class="btn btn-circle">                                  
                                 <i class="fas fa-info-circle" style="color: white"></i>
                               </button>  
                             </a>
                             &nbsp;
-                            <a href="hapus_ADM.php?id=<?=  $row['ID_USER']; ?>" onclick="return confirm('Anda yakin mau menghapus data ini ?')" class="btn btn-danger btn-circle btn-sm">
+                            <a href="hapus_ADM.php" onclick="return confirm('Anda yakin mau menghapus data ini ?')" class="btn btn-danger btn-circle btn-sm">
                               <button type="button" class="btn btn-circle" style="color: white">
                                 <i class="fas fa-trash"></i>
                               </button>  

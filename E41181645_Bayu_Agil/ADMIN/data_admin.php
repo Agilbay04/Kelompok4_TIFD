@@ -413,7 +413,7 @@
               </span>
               <span class="text"><b>CETAK</b></span>
             </a>
-            <?php if($_SESSION['ID_USER'] == 2 || $_SESSION['ID_USER'] == 3) { ?>
+            <?php if($_SESSION['ID_USER'] == 56 || $_SESSION['ID_USER'] == 3) { ?>
               <a href="tambah_admin.php" class="btn btn-success btn-icon-split">
                 <span class="text"><b>+ DATA ADMIN</b></span>
               </a>
@@ -473,7 +473,7 @@
                         <td class="text-center"><?= $row["ALAMAT_USER"]; ?></td>
                         <td class="text-center"><?= $row["NO_HP_USER"]; ?></td>
                         <td class="text-center"><?= $row["EMAIL_USER"]; ?></td>
-                        <td class="text-center"><img src="img/<?= $row["FOTO_PROFIL_USER"]; ?>" alt="foto profil" width="100"></td>
+                        <td class="text-center"><img src="../../../../Project_Web_Revamp/assets/images/user_images<?= $row["FOTO_PROFIL_USER"]; ?>" alt="foto profil" width="100"></td>
                         <?php $hak_akses = $row["HAK_AKSES_USER"]; ?>
                         <td class="text-center"><?php if($hak_akses == 0) {
                           echo '<span class="badge badge-pill badge-danger px-2">Super Admin</span>';

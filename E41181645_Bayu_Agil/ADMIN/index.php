@@ -59,7 +59,7 @@
       echo "<script>alert('Link reset password telah dikirim ke email anda, silahkan buka email anda!')</script>";
     } elseif($resetpassword === 'false') 
     {
-      echo "<script>alert('Terjadi kesalan!')</script>";
+      echo "<script>alert('Terjadi kesalahan!')</script>";
     } else {
       echo "";
     }

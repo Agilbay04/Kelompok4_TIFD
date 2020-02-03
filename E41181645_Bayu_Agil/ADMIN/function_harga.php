@@ -10,14 +10,15 @@
         $lama       = htmlspecialchars($_POST["lama"]);
         $tanggal    = date("Y-m-d");
             
-            $insert_sql = "INSERT INTO det_laptop VALUES('','".$id."','".$beli."','".$jual."','".$stok."','".$garansi."','".$lama."')";
+            $insert_sql = "INSERT INTO det_laptop VALUES('','".$id."','".$beli."','".$jual."','','".$garansi."','".$lama."','')";
             $var = mysqli_query($conn, $insert_sql);
-            if($var == true)
+            if($var)
             {
                 header("Location: data_produk.php?result=success");
             }else
             {
                 header("Location: harga_laptop.php?result=failed");
+                var_dump($insert_sql);
             }    
     } else 
     {
