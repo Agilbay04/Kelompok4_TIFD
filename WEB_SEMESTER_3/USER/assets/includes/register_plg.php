@@ -15,6 +15,35 @@
     if(isset($_POST['registerUser']))
     {
 
+        $sql_id_user = "select * from user where id_user like '%PLG%' ORDER BY user.ID_USER desc limit 1";
+        $mysqli_query_id_user = mysqli_query($conn,$sql_id_user);
+
+        if(mysqli_num_rows($mysqli_query_id_user) > 0)
+        {
+            while($row = mysqli_fetch_assoc($mysqli_query_id_user))
+            {
+                $raw_id = substr($row['ID_USER'],3);
+                $processed_id = intval($raw_id) + 1;
+                if(strlen($processed_id) == 1)
+                {
+                    $id_user = "PLG000".$processed_id;
+                }else if(strlen($processed_id) == 2)
+                {
+                    $id_user = "PLG00".$processed_id;
+                }else if(strlen($processed_id) == 3)
+                {
+                    $id_user = "PLG0".$processed_id;
+                }else if(strlen($processed_id) == 4)
+                {
+                    $id_user = "PLG".$processed_id;
+                }
+            }
+        }else
+        {
+            $id_user = "PLG0001";
+        }
+
+
         //Menyimpan data dari form kedalam variabel
         $namaUser = htmlspecialchars($_POST['namaUser']);
         $jkUser = htmlspecialchars($_POST['jkUser']);
@@ -107,7 +136,7 @@
         }else
         {
             //Menginsert kedalam database
-            $sql_insert = "insert into user values('','".$namaUser."','".$genderUser."','".$alamatUser."','".$notelpUser."',
+            $sql_insert = "insert into user values('".$id_user."','".$namaUser."','".$genderUser."','".$alamatUser."','".$notelpUser."',
             '".$emailUser."','".$passwordEncrypt."','".$fileNameNew."','".$tokenUser."',2,'".date("Y-m-d")."',0)";
             
             //Mengosongkan session jika user berhasil mendaftar
