@@ -40,44 +40,45 @@
                                     for($i = 0; $i < count($_SESSION['daftar_laptop']); $i++)
                                     {
                                         //Membuat query untuk mengambil data laptop
-                                        $query = "select * from laptop inner join det_laptop on laptop.ID_LAPTOP = det_laptop.ID_LAPTOP where laptop.ID_LAPTOP = ".$_SESSION['daftar_laptop'][$i];
-                                
+                                        $query = "select * from laptop inner join det_laptop on laptop.ID_LAPTOP = det_laptop.ID_LAPTOP where det_laptop.ID_DET_LAPTOP = '".$_SESSION['daftar_laptop'][$i]."'";                                
                                         //Menjalankan query
                                         $result = mysqli_query($conn,$query);
-                                
-                                        $row = mysqli_fetch_assoc($result);
                                         
-                                        $total_belanja += $row['HARGA_JUAL'];
+                                        while($row = mysqli_fetch_assoc($result))
+                                        {
+                                        
+                                            $total_belanja += $row['HARGA_JUAL'];
 
-                                        ?>
-                                            <tr class="text-center" id="">
-                                                <td><?php echo $i+1;?></td>
-                                                <td>
-                                                    <img src="../ADMIN/img/<?= $row['GAMBAR_LAPTOP']; ?>" alt="Gambar laptop" class="w-50">
-                                                </td>
-                                                <td><?php echo $row['NAMA_LAPTOP'];?></td>
-                                                <td><?php echo $row['PROCESSOR'];?></td>
-                                                <td><?php echo $row['VGA'];?></td>
-                                                <td><?php echo $row['RAM'];?></td>
-                                                <td><?php echo $row['HARDDISK'];?></td>
-                                                <td><?php echo rupiah($row['HARGA_JUAL']);?></td>
-                                                <td><?php echo rupiah($total_belanja); ?></td>
-                                                <!-- <td colspan="3">
-                                                    <button class="btn btn-outline-dark" onclick="decreaseQtyBeli(this)">
-                                                        <span>&laquo;</span>
-                                                    </button>
-                                                    <span class="mx-2" id="valueLaptop<?php echo $row['ID_LAPTOP'];?>">1</span>
-                                                    <button class="btn btn-outline-dark" onclick="increaseQtyBeli(this)">
-                                                        <span>&raquo;</span>
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-outline-danger" onclick="theAjax()">
-                                                        <span>&times;</span>
-                                                    </button>
-                                                </td> -->
-                                            </tr>
-                                        <?php
+                                            ?>
+                                                <tr class="text-center" id="">
+                                                    <td><?php echo $i+1;?></td>
+                                                    <td>
+                                                        <img src="../ADMIN/img/<?= $row['GAMBAR_LAPTOP']; ?>" alt="Gambar laptop" class="w-50">
+                                                    </td>
+                                                    <td><?php echo $row['NAMA_LAPTOP'];?></td>
+                                                    <td><?php echo $row['PROCESSOR'];?></td>
+                                                    <td><?php echo $row['VGA'];?></td>
+                                                    <td><?php echo $row['RAM'];?></td>
+                                                    <td><?php echo $row['HARDDISK'];?></td>
+                                                    <td><?php echo rupiah($row['HARGA_JUAL']);?></td>
+                                                    <td><?php echo rupiah($total_belanja); ?></td>
+                                                    <!-- <td colspan="3">
+                                                        <button class="btn btn-outline-dark" onclick="decreaseQtyBeli(this)">
+                                                            <span>&laquo;</span>
+                                                        </button>
+                                                        <span class="mx-2" id="valueLaptop<?php echo $row['ID_LAPTOP'];?>">1</span>
+                                                        <button class="btn btn-outline-dark" onclick="increaseQtyBeli(this)">
+                                                            <span>&raquo;</span>
+                                                        </button>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-outline-danger" onclick="theAjax()">
+                                                            <span>&times;</span>
+                                                        </button>
+                                                    </td> -->
+                                                </tr>
+                                            <?php
+                                        }
                                 
                                     }
                                     ?>

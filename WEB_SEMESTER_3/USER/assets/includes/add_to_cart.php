@@ -21,7 +21,7 @@
             $id_laptop = $_GET['laptop'];
     
             //Mengambil data laptop berdasarkan id_laptop
-            $query = "select * from det_laptop where ID_DET_LAPTOP = ".$id_laptop;
+            $query = "select * from det_laptop where ID_DET_LAPTOP = '".$id_laptop."'";
     
             //Menjalankan query
             $query_run = mysqli_query($conn,$query);

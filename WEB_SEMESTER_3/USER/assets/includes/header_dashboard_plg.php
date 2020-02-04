@@ -7,7 +7,7 @@
     if(isset($_SESSION['ID_USER']))
     {
         $id = $_SESSION['ID_USER'];
-        $get_user = "select * from user where id_user = ".$id."";
+        $get_user = "select * from user where id_user = '".$id."'";
 
     }else
     {

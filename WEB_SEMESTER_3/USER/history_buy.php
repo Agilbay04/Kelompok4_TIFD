@@ -76,21 +76,21 @@
     det_laptop.HARGA_JUAL
     from transaksi inner join detail_transaksi on transaksi.ID_TRANSAKSI = detail_transaksi.ID_TRANSAKSI
     inner join user on transaksi.ID_USER = user.ID_USER inner join det_laptop on detail_transaksi.ID_DET_LAPTOP = det_laptop.ID_DET_LAPTOP inner join laptop on det_laptop.ID_LAPTOP = laptop.ID_LAPTOP
-    where user.ID_USER = ".$_SESSION['ID_USER']." and transaksi.STATUS_TRANSAKSI = 2 ORDER BY transaksi.ID_TRANSAKSI ASC";
+    where user.ID_USER = '".$_SESSION['ID_USER']."' and transaksi.STATUS_TRANSAKSI = 2 ORDER BY transaksi.ID_TRANSAKSI ASC";
 
     $query_menunggu_verifikasi = "select transaksi.ID_TRANSAKSI, transaksi.TANGGAL_TRANSAKSI, transaksi.STATUS_TRANSAKSI,
     user.ID_USER,user.NAMA_USER, detail_transaksi.ID_DETAIL_TRANSAKSI, detail_transaksi.JUMLAH_BELI, laptop.ID_LAPTOP, laptop.NAMA_LAPTOP,det_laptop.HARGA_JUAL, det_laptop.STATUS_GARANSI, det_laptop.LAMA_GARANSI,
     det_laptop.HARGA_JUAL
     from transaksi inner join detail_transaksi on transaksi.ID_TRANSAKSI = detail_transaksi.ID_TRANSAKSI
     inner join user on transaksi.ID_USER = user.ID_USER inner join det_laptop on detail_transaksi.ID_DET_LAPTOP = det_laptop.ID_DET_LAPTOP inner join laptop on det_laptop.ID_LAPTOP = laptop.ID_LAPTOP
-    where user.ID_USER = ".$_SESSION['ID_USER']." and transaksi.STATUS_TRANSAKSI = 1 ORDER BY transaksi.ID_TRANSAKSI ASC";
+    where user.ID_USER = '".$_SESSION['ID_USER']."' and transaksi.STATUS_TRANSAKSI = 1 ORDER BY transaksi.ID_TRANSAKSI ASC";
     
     $query_belum_dibayar = "select transaksi.ID_TRANSAKSI, transaksi.TANGGAL_TRANSAKSI, transaksi.STATUS_TRANSAKSI,
     user.ID_USER,user.NAMA_USER, detail_transaksi.ID_DETAIL_TRANSAKSI, detail_transaksi.JUMLAH_BELI, laptop.ID_LAPTOP, laptop.NAMA_LAPTOP,det_laptop.HARGA_JUAL, det_laptop.STATUS_GARANSI, det_laptop.LAMA_GARANSI,
     det_laptop.HARGA_JUAL
     from transaksi inner join detail_transaksi on transaksi.ID_TRANSAKSI = detail_transaksi.ID_TRANSAKSI
     inner join user on transaksi.ID_USER = user.ID_USER inner join det_laptop on detail_transaksi.ID_DET_LAPTOP = det_laptop.ID_DET_LAPTOP inner join laptop on det_laptop.ID_LAPTOP = laptop.ID_LAPTOP
-    where user.ID_USER = ".$_SESSION['ID_USER']." and transaksi.STATUS_TRANSAKSI = 0 ORDER BY transaksi.ID_TRANSAKSI ASC";
+    where user.ID_USER = '".$_SESSION['ID_USER']."' and transaksi.STATUS_TRANSAKSI = 0 ORDER BY transaksi.ID_TRANSAKSI ASC";
 
     //Menjalankan query
     $run_query_verified = mysqli_query($conn,$query_sudah_dibayar);
@@ -147,7 +147,7 @@
                                                    {
                                                         var childTableDataKodePenjualan = document.createElement("td");
                                                         value.appendChild(childTableDataKodePenjualan);
-                                                        childTableDataKodePenjualan.innerText = "<?php echo penjualanFormat($row['ID_TRANSAKSI']);?>";   
+                                                        childTableDataKodePenjualan.innerText = "<?php echo $row['ID_TRANSAKSI'];?>";   
                                                    }
 
                                                    function appendTanggalTransaksi(value)
@@ -298,7 +298,7 @@
                                                    {
                                                         var childTableDataKodePenjualan = document.createElement("td");
                                                         value.appendChild(childTableDataKodePenjualan);
-                                                        childTableDataKodePenjualan.innerText = "<?php echo penjualanFormat($row['ID_TRANSAKSI']);?>";   
+                                                        childTableDataKodePenjualan.innerText = "<?php echo $row['ID_TRANSAKSI'];?>";   
                                                    }
 
                                                    function appendTanggalTransaksi(value)
@@ -449,7 +449,7 @@
                                                    {
                                                         var childTableDataKodePenjualan = document.createElement("td");
                                                         value.appendChild(childTableDataKodePenjualan);
-                                                        childTableDataKodePenjualan.innerText = "<?php echo penjualanFormat($row['ID_TRANSAKSI']);?>";   
+                                                        childTableDataKodePenjualan.innerText = "<?php echo $row['ID_TRANSAKSI'];?>";   
                                                    }
 
                                                    function appendTanggalTransaksi(value)

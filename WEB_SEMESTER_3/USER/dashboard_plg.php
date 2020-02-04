@@ -14,11 +14,11 @@
 
         }else
         {
-            header();
+            // header("Location: dashboard_plg.php?systemerror=true");
         }
     }else
     {
-        header();
+        // header("Location: dashboard_plg.php?systemerror=true");
     }
 
 ?>

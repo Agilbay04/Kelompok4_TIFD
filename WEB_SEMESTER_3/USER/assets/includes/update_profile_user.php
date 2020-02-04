@@ -14,7 +14,7 @@
         $notelpUser = htmlspecialchars(stripcslashes($_POST['notelpUserProfile']));
 
         //Query
-        $query = "update user set nama_user = '".$namaUser."', jenis_kelamin = '".$genderUser."', alamat_user = '".$alamatUser."', no_hp_user = '".$notelpUser."' where id_user = ".$id_user;
+        $query = "update user set nama_user = '".$namaUser."', jenis_kelamin = '".$genderUser."', alamat_user = '".$alamatUser."', no_hp_user = '".$notelpUser."' where id_user = '".$id_user."'";
 
         //Jalankan Query
         if(mysqli_query($conn, $query))

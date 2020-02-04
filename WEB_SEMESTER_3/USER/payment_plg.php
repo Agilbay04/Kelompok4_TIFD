@@ -16,7 +16,7 @@
 
         //Mencari apakah transaksi benar atau tidak
         //Membuat query
-        $query = "select * from transaksi where ID_TRANSAKSI = ".$id_transaksi;
+        $query = "select * from transaksi where ID_TRANSAKSI = '".$id_transaksi."'";
 
         $result = mysqli_query($conn,$query);
 
@@ -27,7 +27,7 @@
             $query_sum = "select sum(det_laptop.HARGA_JUAL) as total_bayar from det_laptop 
                       inner join detail_transaksi on det_laptop.ID_DET_LAPTOP = detail_transaksi.ID_DET_LAPTOP 
                       inner join transaksi on transaksi.ID_TRANSAKSI = detail_transaksi.ID_TRANSAKSI 
-                      where transaksi.ID_TRANSAKSI = ".$id_transaksi;
+                      where transaksi.ID_TRANSAKSI = '".$id_transaksi."'";
 
             $result = mysqli_query($conn,$query_sum);
 

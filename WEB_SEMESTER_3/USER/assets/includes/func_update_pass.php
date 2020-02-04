@@ -15,7 +15,7 @@
         $passwordEncrypt = password_hash($passwordBaru, PASSWORD_BCRYPT);
 
         //Query untuk ubah password
-        $query = "update user set password_user = '".$passwordEncrypt."' where id_user = ".$id_user;
+        $query = "update user set password_user = '".$passwordEncrypt."' where id_user = '".$id_user."'";
 
         //Menjalankan query
         if(mysqli_query($conn, $query))

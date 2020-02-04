@@ -34,7 +34,7 @@ function rupiah($value)
                         $total_belanja = 0;
                         for($i = 0; $i < count($_SESSION['daftar_laptop']); $i++)
                         {
-                            $query = "select * from laptop inner join det_laptop on laptop.ID_LAPTOP = det_laptop.ID_LAPTOP where laptop.ID_LAPTOP = ".$_SESSION['daftar_laptop'][$i];
+                            $query = "select * from laptop inner join det_laptop on laptop.ID_LAPTOP = det_laptop.ID_LAPTOP where det_laptop.ID_DET_LAPTOP = '".$_SESSION['daftar_laptop'][$i]."'";
                                 
                             //Menjalankan query
                             $result = mysqli_query($conn,$query);
