@@ -216,7 +216,7 @@
                                                     <tbody id="tableBody<?php echo $row['ID_TRANSAKSI']?>">
                                                         <tr>
                                                             <td> <?php echo $number;?> </td>
-                                                            <td> <?php echo penjualanFormat($row['ID_TRANSAKSI']);?> </td>
+                                                            <td> <?php echo $row['ID_TRANSAKSI'];?> </td>
                                                             <td> <?php echo $row['TANGGAL_TRANSAKSI'];?> </td>
                                                             <td> <?php echo $row['NAMA_LAPTOP'];?> </td>
                                                             <td> <?php echo $row['JUMLAH_BELI'];?> </td>
@@ -367,7 +367,7 @@
                                                     <tbody id="tableBody<?php echo $row['ID_TRANSAKSI']?>">
                                                         <tr>
                                                             <td> <?php echo $number;?> </td>
-                                                            <td> <?php echo penjualanFormat($row['ID_TRANSAKSI']);?> </td>
+                                                            <td> <?php echo $row['ID_TRANSAKSI'];?> </td>
                                                             <td> <?php echo $row['TANGGAL_TRANSAKSI'];?> </td>
                                                             <td> <?php echo $row['NAMA_LAPTOP'];?> </td>
                                                             <td> <?php echo $row['JUMLAH_BELI'];?> </td>
@@ -518,7 +518,7 @@
                                                     <tbody id="tableBody<?php echo $row['ID_TRANSAKSI']?>">
                                                         <tr>
                                                             <td> <?php echo $number;?> </td>
-                                                            <td> <?php echo penjualanFormat($row['ID_TRANSAKSI']);?> </td>
+                                                            <td> <?php echo $row['ID_TRANSAKSI'];?> </td>
                                                             <td> <?php echo $row['TANGGAL_TRANSAKSI'];?> </td>
                                                             <td> <?php echo $row['NAMA_LAPTOP'];?> </td>
                                                             <td> <?php echo $row['JUMLAH_BELI'];?> </td>

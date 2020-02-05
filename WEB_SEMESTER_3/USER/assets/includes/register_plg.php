@@ -46,7 +46,6 @@
 
         //Menyimpan data dari form kedalam variabel
         $namaUser = htmlspecialchars($_POST['namaUser']);
-        $jkUser = htmlspecialchars($_POST['jkUser']);
         $alamatUser = htmlspecialchars($_POST['alamatUser']);
         $notelpUser = htmlspecialchars($_POST['notelpUser']);
         $emailUser = htmlspecialchars(strtolower(stripcslashes($_POST['emailUser'])));
@@ -147,67 +146,62 @@
             $_SESSION['emailUserRegister'] = "";
             $_SESSION['passwordUserRegister'] = "";
 
+            $mail = new PHPMailer(true);
 
-            if(mysqli_query($conn, $sql_insert))
+            try
             {
+                //Konfigurasi Server
+                $mail->isSMTP();
+                $mail->Host = "smtp.gmail.com";
+                $mail->SMTPAuth = true;
+                $mail->Username = "tugasbagoes98@gmail.com";
+                $mail->Password = "lupanama9877";
+                $mail->SMTPSecure = "tls";
+                $mail->Port = 587;
 
-                $mail = new PHPMailer(true);
+                //Penerima
+                $mail->setFrom('tugasbagoes98@gmail.com','Admin');
+                $mail->addAddress($emailUser, 'Pengguna');
+                $mail->addReplyTo('noreply@rizquinastore.com','No-Reply');
 
-                try
+                //Content
+                $mail->isHTML(true);
+                $mail->Subject = "Aktivasi Akun";
+                $mail->Body = "<h1> Pelanggan yang terhormat. </h1>
+                                <p> Anda telah mendaftar kedalam website kami. </p>
+                                <p> Apabila anda merasa tidak melakukannya, harap abaikan email ini. </p>
+                                <p> <a href='".$url_aktivasi_akun."'> Aktivasi Akun </a> </p>                    
+                                ";
+                $mail->AltBody = "Alternative";
+
+                //Mengirim Email
+                if($mail->send())
                 {
-
-                    //Konfigurasi Server
-                    $mail->isSMTP();
-                    $mail->Host = "smtp.gmail.com";
-                    $mail->SMTPAuth = true;
-                    $mail->Username = "tugasbagoes98@gmail.com";
-                    $mail->Password = "unownihsan";
-                    $mail->SMTPSecure = "tls";
-                    $mail->Port = 587;
-
-                    //Penerima
-                    $mail->setFrom('tugasbagoes98@gmail.com','Admin');
-                    $mail->addAddress($emailUser, 'Pengguna');
-                    $mail->addReplyTo('noreply@rizquinastore.com','No-Reply');
-
-                    //Content
-                    $mail->isHTML(true);
-                    $mail->Subject = "Aktivasi Akun";
-                    $mail->Body = "<h1> Pelanggan yang terhormat. </h1>
-                                   <p> Anda telah mendaftar kedalam website kami. </p>
-                                   <p> Apabila anda merasa tidak melakukannya, harap abaikan email ini. </p>
-                                   <p> <a href='".$url_aktivasi_akun."'> Aktivasi Akun </a> </p>                    
-                                   ";
-                    $mail->AltBody = "Alternative";
-
-                    //Mengirim Email
-                    if($mail->send())
+                    //Mengupload Gambar
+                    $result_upload = move_uploaded_file($tmpName, '../images/user_images/'.$fileNameNew);
+                    if(mysqli_query($conn,$sql_insert))
                     {
-                        //Mengupload Gambar
-                        $result_upload = move_uploaded_file($tmpName, '../images/user_images/'.$fileNameNew);
                         if($result_upload)
                         {
                             header("Location: ../../register.php?successregister=true");
                         }else{
                             header("Location: ../../register.php?successregister=false");
                         }
+
                     }else
                     {
-                        header("Location: ../../register.php?error=failedtoregister");
+                        header("Location: ../../register.php?successregister=false");
                     }
-
-                }catch(Exception $e)
+                }else
                 {
-                    echo $mail->ErrorInfo;
+                    header("Location: ../../register.php?error=failedtoregister");
                 }
-                
-            }else
+
+            }catch(Exception $e)
             {
-                header("Location: ../../register.php?error=systemerror");
+                echo $mail->ErrorInfo;
             }
-
         }
-
     }else
     {
         header("Location: ../../index.php?error=accessdenied");
